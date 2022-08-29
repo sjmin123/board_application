@@ -31,5 +31,9 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
+jar {
+	setArchivesBaseName('board')
+	version(1.0)
+}
 
 
