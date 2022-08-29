@@ -1,0 +1,35 @@
+{{>layouts/header}}
+
+<table class="table" >
+    <thead>
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">account</th>
+        <th scope="col">title</th>
+        <th scope="col">content</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#articleList}}
+        <tr height="50" class="cut">
+            <th width="100">{{id}}</th>
+            <td width="150" height="50">
+                {{account}}</td>
+            <td width="250"><a href="/articles/{{id}}">{{title}}</a></td>
+            <td width="650" height="50"
+                style="overflow: hidden;
+                      text-overflow: ellipsis;
+                      white-space: nowrap; 		// 아래줄로 내려가는 것을 막기위해
+                      width: 650px;
+                      height:50px;
+                      display: block;">
+                {{content}}</td>
+        </tr>
+    {{/articleList}}
+    </tbody>
+</table>
+
+<a href="/articles/new" class="btn btn-primary">New Article</a>
+<a href="/logout" class="btn btn-danger">LogOut</a>
+
+{{>layouts/footer}}

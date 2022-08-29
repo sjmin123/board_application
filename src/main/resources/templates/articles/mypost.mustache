@@ -1,0 +1,32 @@
+{{>layouts/header}}
+
+<table class="table" >
+    <thead>
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">title</th>
+        <th scope="col">content</th>
+        <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#myPostList}}
+        <tr height="50" class="cut">
+            <th width="100">{{id}}</th>
+            <td width="250"><a href="/articles/{{id}}">{{title}}</a></td>
+            <td width="650" height="50"
+                style="overflow: hidden;
+                      text-overflow: ellipsis;
+                      white-space: nowrap; 		// 아래줄로 내려가는 것을 막기위해
+                      width: 650px;
+                      height:50px;
+                      display: block;">{{content}}</td>
+            <td>
+                <a href="/articles/{{id}}/delete" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    {{/myPostList}}
+    </tbody>
+</table>
+
+{{>layouts/footer}}

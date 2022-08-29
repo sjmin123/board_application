@@ -1,0 +1,15 @@
+{{>layouts/header}}
+
+<form action="/articles/create" method="post">
+    <input type="hidden" name="">
+    {{#account}}
+        <input type="hidden" name="account" value="{{id}}">
+    {{id}}
+    {{/account}}
+    <input type="text" name="title">
+    <textarea name="content"></textarea>
+    <button type="submit">submit</button>
+    <a href="/articles">back</a>
+</form>
+
+{{>layouts/footer}}

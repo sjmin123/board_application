@@ -1,0 +1,35 @@
+{{>layouts/header}}
+
+
+<!--#article 이건 title,content,id앞에 article.title이게 계속 나오는걸 없애줌-->
+{{#article}}
+    <form action="/articles/update" method="post">
+        <input name="id" type="hidden" value="{{id}}"/>
+        <table class="table">
+            <tr>
+                <td>
+                    <input type="text" name="title" value="{{title}}" style="width:800px;">
+                </td>
+
+            </tr>
+            <tr>
+                <td >
+                    <textarea name="content" rows="10" cols="100">{{content}}</textarea>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">submit</button>
+                </td>
+            </tr>
+        </table>
+
+
+
+        <a href="/articles/{{id}}">back</a>
+    </form>
+{{/article}}
+
+
+{{>layouts/footer}}

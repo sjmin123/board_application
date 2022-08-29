@@ -1,0 +1,32 @@
+{{>layouts/header}}
+
+
+
+<center>
+    <br><br><br> <br>
+    <h1>
+        Board Application
+    </h1>
+    <h4>
+        by Sjmin<br><br><br>
+    </h4>
+    <div>
+        <br><br>
+        <form action="/login/connect" method="post">
+            <div>
+                ID <input type="text" name="id">
+            </div>
+            <div>
+                PW <input type="password" name="password">
+                <br><br>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">login!</button>
+                <a href="/join" class="btn btn-primary">Join</a>
+            </div>
+            <br><br>
+        </form>
+    </div>
+</center>
+
+{{>layouts/footer}}
