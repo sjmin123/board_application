@@ -2,6 +2,7 @@ package com.pproject.board.controller;
 
 import com.pproject.board.dto.ArticleForm;
 import com.pproject.board.dto.CommentDto;
+import com.pproject.board.dto.CommentDtoMine;
 import com.pproject.board.entity.Article;
 import com.pproject.board.entity.Idd;
 import com.pproject.board.repository.ArticleRepository;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.pproject.board.sessionData.SessionConstants.LOGIN_MEMBER;
@@ -107,6 +109,8 @@ public class ArticleController {
         // 1. id로 데이터를 가져옴
         Article articleEntity = articleRepository.findById(id).orElse(null);
         List<CommentDto> commentDtos = commentService.comments(id);
+        List<CommentDtoMine> commentDtoMines=new ArrayList<>();
+        commentDtos.forEach(e->commentDtoMines.add(CommentDtoMine.createCommentDto(e)));
 
         //자신이 쓴 글인지 확인
         Idd idd = (Idd) session.getAttribute(LOGIN_MEMBER);
@@ -114,11 +118,16 @@ public class ArticleController {
             log.info("세션과 모델값이 같음!");
             model.addAttribute("mine", ".");
         }
-        ;
+        commentDtoMines.forEach(e->{
+            if(e.getNickname().equals(idd.getId())) {
+                e.setIsMine("true");
+            }});
+
+
         // 2. 가져온 데이터를 모델에 등록
         model.addAttribute("id", idd);
         model.addAttribute("article", articleEntity);
-        model.addAttribute("commentDtos", commentDtos);
+        model.addAttribute("commentDtos", commentDtoMines);
 
         // 3. 보여줄 페이지를 설정
         return "articles/show";
